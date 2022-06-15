@@ -3,6 +3,7 @@
 //#region IMPORTING
 const request = require('request');
 const fs = require('fs');
+const {EventEmitter} = require('events');
 var obj = new EventEmitter();
 //#endregion IMPORTING
 
