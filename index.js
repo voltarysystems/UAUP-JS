@@ -3,6 +3,7 @@
 //#region IMPORTING
 const request = require('request');
 const fs = require('fs');
+var obj = new EventEmitter();
 //#endregion IMPORTING
 
 ////////////////////    GLOBAL VARIABLES    ////////////////////
@@ -199,6 +200,7 @@ function showProgress(rb, tb) {
     try {
         if (dl_bar !== null)
             dl_bar.setAttribute('value', (rb * 100) / tb);
+        obj.emit("progressUpdate", (rb * 100) / tb);
     } catch { }
 }
 
@@ -211,6 +213,7 @@ function updateHeader(value) {
     try {
         if (dl_label !== null)
             dl_label.innerHTML = value;
+        obj.emit("headerUpdate", value);
     } catch { }
 }
 
@@ -379,4 +382,4 @@ function GetAppLibrary() {
 }
 //#endregion
 
-module.exports = { Update, CheckForUpdates, GetAppLibrary };
+module.exports = { Update, CheckForUpdates, GetAppLibrary, obj };
